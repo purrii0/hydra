@@ -1,6 +1,8 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+#include "./tokenizer.h"
+
 typedef enum {
   NODE_PROGRAM,
   NODE_FUNC_DECL,
@@ -28,5 +30,8 @@ Node *parse_term();
 Node *parse_factor();
 Node *parse_statement();
 Node *parse_program();
+
+Node *make_child(NodeType type, char *value);
+void add_child(Node *parent, Node *child);
 
 #endif
