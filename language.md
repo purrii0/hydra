@@ -2,12 +2,13 @@
 
 ## 1. General Rules
 
-* Every statement **must end with a semicolon (`;`)**.
-* The program execution **starts from the `main` function**.
-* Code blocks are enclosed using `{ }`.
-* The language is **case-sensitive**.
-* Whitespace is ignored except where it separates tokens.
-* Valid variable names [a-zA-Z]\S* 
+- Every statement **must end with a semicolon (`;`)**.
+- The program execution **starts from the `main` function**.
+- Code blocks are enclosed using `{ }`.
+- The language is **case-sensitive**.
+- Whitespace is ignored except where it separates tokens.
+- Valid variable names [a-zA-Z]\S\*
+
 ---
 
 ## 2. Data Types
@@ -68,8 +69,8 @@ int add(int a, int b) {
 
 ## 5. Main Function
 
-* The `main` function is the **entry point** of the program.
-* It must return an `int`.
+- The `main` function is the **entry point** of the program.
+- It must return an `int`.
 
 ### Example
 
@@ -83,8 +84,8 @@ int main() {
 
 ## 6. Return Statement
 
-* Functions with a return type other than `void` **must** return a value.
-* `void` functions may use `return;` or omit it.
+- Functions with a return type other than `void` **must** return a value.
+- `void` functions may use `return;` or omit it.
 
 ### Examples
 
@@ -171,19 +172,19 @@ for (int i = 0; i < 10; i = i + 1) {
 
 ### Arithmetic Operators
 
-* `+` addition
-* `-` subtraction
-* `*` multiplication
-* `/` division
+- `+` addition
+- `-` subtraction
+- `*` multiplication
+- `/` division
 
 ### Comparison Operators
 
-* `==` equal
-* `!=` not equal
-* `<` less than
-* `>` greater than
-* `<=` less than or equal
-* `>=` greater than or equal
+- `==` equal
+- `!=` not equal
+- `<` less than
+- `>` greater than
+- `<=` less than or equal
+- `>=` greater than or equal
 
 ---
 
@@ -212,3 +213,6 @@ int main() {
     return 0;
 }
 ```
+
+## 10
+
