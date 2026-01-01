@@ -6,6 +6,9 @@
 typedef enum {
   NODE_PROGRAM,
   NODE_FUNC_DECL,
+  NODE_BLOCK,
+  NODE_PARAM_LIST,
+  NODE_PARAM,
   NODE_VAR_DECL,
   NODE_ASSIGN,
   NODE_IF,
@@ -18,11 +21,28 @@ typedef enum {
   NODE_IDENT
 } NodeType;
 
+typedef enum {
+  TYPE_INT,
+  TYPE_CHAR,
+  TYPE_STRING,
+  TYPE_FLOAT,
+  TYPE_VOID
+} DataType;
+
+typedef struct {
+  DataType type;
+  char *identifier;
+  char *value;
+} Params;
+
 typedef struct Node {
   NodeType type;
   struct Node **children;
   int child_count;
   char *value;
+
+  DataType return_type;
+  Params params[64];
 } Node;
 
 Node *parse_expression();
@@ -31,7 +51,9 @@ Node *parse_factor();
 Node *parse_statement();
 Node *parse_program();
 
-Node *make_child(NodeType type, char *value);
+Node *make_node(NodeType type, char *value);
 void add_child(Node *parent, Node *child);
+
+Node *parser(Token *toks);
 
 #endif
