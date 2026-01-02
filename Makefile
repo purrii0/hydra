@@ -1,14 +1,22 @@
-CC = gcc
-CFLAGS = -Wall -Wextra -Iinclude
+CC      = gcc
+CFLAGS  = -Wall -Wextra -Iinclude -g
 
-SRC = src/*.c
-TARGET = hydra
+SRC     = main.c $(wildcard src/*.c)
+OBJ     = $(SRC:.c=.o)
+TARGET  = hydra
 
-all: $(TARGET)
+.PHONY: all build clean
 
-$(TARGET):
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+all: build
+
+build: $(TARGET)
+
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(TARGET)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(TARGET)
+	rm -f $(TARGET) $(OBJ)
 

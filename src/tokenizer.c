@@ -41,6 +41,11 @@ static int is_keyword(const char *s, TokenType *type) {
     *type = TOK_FOR;
     return 1;
   }
+
+  if (strcmp(s, "print") == 0) {
+    *type = TOK_PRINT;
+    return 1;
+  }
   if (strcmp(s, "return") == 0) {
     *type = TOK_RETURN;
     return 1;
@@ -205,4 +210,3 @@ Token *tokenizer(const char *source) {
 
   return tokens;
 }
-

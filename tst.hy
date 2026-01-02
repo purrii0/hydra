@@ -4,7 +4,7 @@ int main() {
     int sum = x + y;
 
     if (sum > 10) {
-        return 1;
+        print(1);
     }
 
     return 0;

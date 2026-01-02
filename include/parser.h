@@ -18,6 +18,7 @@ typedef enum {
   NODE_BINARY_OP,
   NODE_UNARY_OP,
   NODE_LITERAL,
+  NODE_PRINT,
   NODE_IDENT
 } NodeType;
 
@@ -55,5 +56,7 @@ Node *make_node(NodeType type, char *value);
 void add_child(Node *parent, Node *child);
 
 Node *parser(Token *toks);
+
+void generate_c(Node *ast, const char *output_file);
 
 #endif

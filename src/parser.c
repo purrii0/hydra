@@ -6,10 +6,6 @@
 static Token *tokens;
 static int pos = 0;
 
-/* -------------------------------------------------- */
-/* Utilities                                          */
-/* -------------------------------------------------- */
-
 static Token *current_token() { return &tokens[pos]; }
 static Token *peek(int offset) { return &tokens[pos + offset]; }
 
@@ -31,10 +27,6 @@ static void expect(TokenType type, const char *msg) {
   }
 }
 
-/* -------------------------------------------------- */
-/* AST helpers                                        */
-/* -------------------------------------------------- */
-
 Node *make_node(NodeType type, char *value) {
   Node *node = malloc(sizeof(Node));
   node->type = type;
@@ -51,10 +43,6 @@ void add_child(Node *parent, Node *child) {
   parent->children[parent->child_count++] = child;
 }
 
-/* -------------------------------------------------- */
-/* Types                                              */
-/* -------------------------------------------------- */
-
 static DataType parse_type() {
   if (match(TOK_INT))
     return TYPE_INT;
@@ -70,10 +58,6 @@ static DataType parse_type() {
   printf("Expected type at line %d\n", current_token()->line);
   exit(1);
 }
-
-/* -------------------------------------------------- */
-/* Expressions                                        */
-/* -------------------------------------------------- */
 
 Node *parse_expression(); // forward
 
@@ -156,10 +140,6 @@ Node *parse_expression() {
   return left;
 }
 
-/* -------------------------------------------------- */
-/* Statements                                         */
-/* -------------------------------------------------- */
-
 Node *parse_statement(); // forward
 
 Node *parse_block() {
@@ -240,6 +220,17 @@ Node *parse_statement() {
     return parse_function_decl();
   }
 
+  if (match(TOK_PRINT)) {
+    expect(TOK_LPAREN, "(");
+    Node *expr = parse_expression();
+    expect(TOK_RPAREN, ")");
+    expect(TOK_SEMI, ";");
+
+    Node *p = make_node(NODE_PRINT, NULL);
+    add_child(p, expr);
+    return p;
+  }
+
   /* variable declaration */
   if (current_token()->type == TOK_INT || current_token()->type == TOK_CHAR ||
       current_token()->type == TOK_FLOAT ||
@@ -294,10 +285,6 @@ Node *parse_statement() {
          current_token()->lexeme);
   exit(1);
 }
-
-/* -------------------------------------------------- */
-/* Program                                            */
-/* -------------------------------------------------- */
 
 Node *parse_program() {
   Node *program = make_node(NODE_PROGRAM, NULL);
