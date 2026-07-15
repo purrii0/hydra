@@ -1,6 +1,6 @@
 # Hydra Compiler
 
-Hydra is a small **C-like compiler** written in **C**.
+Hydra is a transpiler for **C-like** language written in **C**.
 It takes source code written in a custom language, builds an **AST**, and **generates equivalent C code**.
 
 This project is meant for learning **real compiler construction**, not interpretation.
